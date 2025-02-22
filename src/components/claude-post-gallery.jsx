@@ -58,7 +58,7 @@ const CurvedPost = ({ user, videoUrl, initialLikes, caption, timeAgo }) => {
         </div>
 
         <motion.div
-          className="hidden md:block absolute top-0 left-[200px] w-24 h-24 bg-transparent rounded-[25%]"
+          className="block absolute top-0 left-[200px] w-24 h-24 bg-transparent rounded-[25%]"
           style={{ boxShadow: "-20px -45px 0 white" }}
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -66,7 +66,7 @@ const CurvedPost = ({ user, videoUrl, initialLikes, caption, timeAgo }) => {
         />
 
         <motion.div
-          className="hidden md:block absolute top-[70px] left-0 w-24 h-24 bg-transparent rounded-[50%]"
+          className="block absolute top-[70px] left-0 w-24 h-24 bg-transparent rounded-[50%]"
           style={{ boxShadow: "-50px -45px 0 white" }}
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
