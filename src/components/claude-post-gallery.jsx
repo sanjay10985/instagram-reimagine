@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { MessageCircle, Share2, Bookmark } from "lucide-react";
+import { MessageCircle, Share2, Bookmark, Linkedin } from "lucide-react";
 import MaskedDiv from "./ui/masked-div";
 import { SubscribeButton } from "./like-button";
+import { Github, Globe, Info } from "lucide-react";
 
 const CurvedPost = ({ user, videoUrl, initialLikes, caption, timeAgo }) => {
   const [isLiked, setIsLiked] = useState(false);
@@ -226,44 +227,85 @@ const InstagramFeed = () => {
   ];
 
   return (
-    <div className="max-w-[470px] mx-auto py-4 px-0 space-y-8">
-      {posts.map((post) => (
-        <CurvedPost key={post.id} {...post} initialLikes={post.likes} />
-      ))}
+    <div className="relative min-h-screen">
       <motion.div
-        className="overflow-x-auto whitespace-nowrap py-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
+        className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white/80 backdrop-blur-md px-6 py-3 rounded-full shadow-lg flex items-center gap-4 z-50"
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.5, type: "spring" }}
       >
-        <motion.div
-          className="flex relative  gap-4"
-          initial={{ x: -100 }}
-          animate={{ x: 0 }}
-          transition={{ type: "spring", stiffness: 50, damping: 20 }}
+        <motion.a
+          href="https://github.com/sanjay10985/instagram-reimagine"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 hover:bg-black/5 rounded-full transition-colors"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
-          {ads.map((item, index) => (
-            <motion.div
-              key={item.id}
-              // whileHover={{ scale: 1.05, y: -5 }}
-              // whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="min-w-full"
-            >
-              <MaskedDiv maskType="type-3" className="">
-                <video
-                  className="cursor-pointer transition-all duration-300"
-                  autoPlay
-                  loop
-                  muted
-                >
-                  <source src={item.videoUrl} type="video/mp4" />
-                </video>
-              </MaskedDiv>
-            </motion.div>
-          ))}
-        </motion.div>
+          <Github className="w-5 h-5" />
+        </motion.a>
+
+        <motion.a
+          href="https://shakuni.live"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 hover:bg-black/5 rounded-full transition-colors"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <Globe className="w-5 h-5" />
+        </motion.a>
+
+        <motion.a
+          className="p-2 hover:bg-black/5 rounded-full transition-colors"
+          href="https://www.linkedin.com/in/sanjay-tomar/"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          {/* <Info className="w-5 h-5" /> */}
+          <Linkedin className="w-5 h-5" />
+        </motion.a>
       </motion.div>
+      <div className="max-w-[470px] mx-auto py-4 px-0 space-y-8">
+        {posts.map((post) => (
+          <CurvedPost key={post.id} {...post} initialLikes={post.likes} />
+        ))}
+        <motion.div
+          className="overflow-x-auto whitespace-nowrap py-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+        >
+          <motion.div
+            className="flex relative  gap-4"
+            initial={{ x: -100 }}
+            animate={{ x: 0 }}
+            transition={{ type: "spring", stiffness: 50, damping: 20 }}
+          >
+            {ads.map((item, index) => (
+              <motion.div
+                key={item.id}
+                // whileHover={{ scale: 1.05, y: -5 }}
+                // whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="min-w-full"
+              >
+                <MaskedDiv maskType="type-3" className="">
+                  <video
+                    className="cursor-pointer transition-all duration-300"
+                    autoPlay
+                    loop
+                    muted
+                  >
+                    <source src={item.videoUrl} type="video/mp4" />
+                  </video>
+                </MaskedDiv>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </div>
     </div>
   );
 };
